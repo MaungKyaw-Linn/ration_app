@@ -1,68 +1,68 @@
 class RationModel {
-  final int? ration_id;
-  final String? ration_name;
+  final int? rationId;
+  final String? rationName;
   final double? rate;
   final int? count;
   final String? remark;
-  final int? department_id;
-  final int? sub_department_id;
-  final DateTime? first_date;
-  final DateTime? second_date;
+  final int? departmentId;
+  final int? subDepartmentId;
+  final DateTime? firstDate;
+  final DateTime? secondDate;
   RationModel({
-    this.ration_id,
-    required this.ration_name,
+    this.rationId,
+    required this.rationName,
     required this.rate,
     required this.count,
     this.remark,
-    this.department_id,
-    this.sub_department_id,
-    this.first_date,
-    this.second_date,
+    this.departmentId,
+    this.subDepartmentId,
+    this.firstDate,
+    this.secondDate,
   });
   Map<String, dynamic> toMap() {
     return {
-      'ration_id': ration_id,
-      'ration_name': ration_name,
+      'rationId': rationId,
+      'rationName': rationName,
       'rate': rate,
       'count': count,
       'remark': remark,
-      'department_id': department_id,
-      'sub_department_id': sub_department_id,
-      'first_date': first_date,
-      'second_date': second_date,
+      'departmentId': departmentId,
+      'subDepartmentId': subDepartmentId,
+      'firstDate': firstDate,
+      'secondDate': secondDate,
     };
   }
 
   RationModel.fromMap(Map<String, dynamic> map)
-      : ration_id = map['ration_id'],
-        ration_name = map['ration_name'],
+      : rationId = map['rationId'],
+        rationName = map['rationName'],
         rate = double.parse(map['rate']),
         count = map['count'],
         remark = map['remark'],
-        department_id = map['department_id'],
-        sub_department_id = map['sub_department_id'],
-        first_date = map['first_date'],
-        second_date = map['second_date'];
+        departmentId = map['departmentId'],
+        subDepartmentId = map['subDepartmentId'],
+        firstDate = map['firstDate'],
+        secondDate = map['secondDate'];
 
   RationModel copyWith({
-    int? ration_id,
-    String? ration_name,
+    int? rationId,
+    String? rationName,
     double? rate,
     int? count,
     String? remark,
-    int? department_id,
-    int? sub_department_id,
-    DateTime? first_date,
-    DateTime? second_date,
+    int? departmentId,
+    int? subDepartmentId,
+    DateTime? firstDate,
+    DateTime? secondDate,
   }) =>
       RationModel(
-        ration_id: ration_id,
-        ration_name: ration_name ?? this.ration_name,
+        rationId: rationId,
+        rationName: rationName ?? this.rationName,
         rate: rate ?? this.rate,
         count: count ?? this.count,
-        department_id: department_id ?? this.department_id,
-        sub_department_id: sub_department_id ?? this.sub_department_id,
-        first_date: first_date ?? this.first_date,
-        second_date: second_date ?? this.second_date,
+        departmentId: departmentId ?? this.departmentId,
+        subDepartmentId: subDepartmentId ?? this.subDepartmentId,
+        firstDate: firstDate ?? this.firstDate,
+        secondDate: secondDate ?? this.secondDate,
       );
 }
