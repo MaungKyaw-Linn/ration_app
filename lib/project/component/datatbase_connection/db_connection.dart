@@ -4,20 +4,15 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
-  factory DatabaseHelper() => _instance;
-
   static Database? _database;
 
-  DatabaseHelper._internal();
-
-  Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await _initDatabase();
+  // Singleton pattern for getting the database instance
+  static Future<Database> getDatabase() async {
+    _database ??= await _initDatabase();
     return _database!;
   }
 
-  Future<Database> _initDatabase() async {
+  static Future<Database> _initDatabase() async {
     String path = join(await getDatabasesPath(), 'app_database.db');
     return await openDatabase(
       path,
@@ -26,7 +21,7 @@ class DatabaseHelper {
     );
   }
 
-  Future<void> _createTables(Database db, int version) async {
+  static Future<void> _createTables(Database db, int version) async {
     await db.execute('''
     CREATE TABLE department_table (
       departmentId INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -67,8 +62,8 @@ class DatabaseHelper {
   //to close database
 
   close() async {
-    var db = await this.database;
-    var result = db.close();
+    var db = _database;
+    var result = db!.close();
     return result;
   }
 }
