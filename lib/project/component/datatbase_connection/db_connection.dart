@@ -64,55 +64,6 @@ class DatabaseHelper {
     await db.execute('PRAGMA foreign_keys = ON;');
   }
 
-  ///data insert into tables
-
-  Future<void> insertDepartmentTable(String? departmentName) async {
-    final db = await database;
-    await db.insert(
-      'department_table',
-      {'departmentName': departmentName},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  Future<void> insertSubDepartmentTable(
-      int? departmentId, String? subDepartmentName) async {
-    final db = await database;
-    await db.insert(
-      'sub_department_table',
-      {'departmentId': departmentId, 'subDepartmentName': subDepartmentName},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  Future<void> insertRationTable(
-      int? departmentId,
-      int? subDepartmentId,
-      String? rationName,
-      String? rate,
-      int? count,
-      String? remark,
-      String? externalRation,
-      String? firstDate,
-      String? secondDate) async {
-    final db = await database;
-    await db.insert(
-      'ration_table',
-      {
-        'departmentId': subDepartmentId,
-        'subDepartmentId': subDepartmentId,
-        'rationName': rationName,
-        'rate': rate,
-        'count': count,
-        'remark': remark,
-        'externalRation': externalRation,
-        'firstDate': firstDate,
-        'secondDate': secondDate,
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
   //to close database
 
   close() async {

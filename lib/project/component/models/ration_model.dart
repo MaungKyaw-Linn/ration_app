@@ -19,6 +19,8 @@ class RationModel {
     this.firstDate,
     this.secondDate,
   });
+
+  // Convert a Ration object into a map for storing in the database
   Map<String, dynamic> toMap() {
     return {
       'rationId': rationId,
@@ -33,36 +35,17 @@ class RationModel {
     };
   }
 
-  RationModel.fromMap(Map<String, dynamic> map)
-      : rationId = map['rationId'],
-        rationName = map['rationName'],
-        rate = double.parse(map['rate']),
-        count = map['count'],
-        remark = map['remark'],
-        departmentId = map['departmentId'],
-        subDepartmentId = map['subDepartmentId'],
-        firstDate = map['firstDate'],
-        secondDate = map['secondDate'];
-
-  RationModel copyWith({
-    int? rationId,
-    String? rationName,
-    double? rate,
-    int? count,
-    String? remark,
-    int? departmentId,
-    int? subDepartmentId,
-    DateTime? firstDate,
-    DateTime? secondDate,
-  }) =>
-      RationModel(
-        rationId: rationId,
-        rationName: rationName ?? this.rationName,
-        rate: rate ?? this.rate,
-        count: count ?? this.count,
-        departmentId: departmentId ?? this.departmentId,
-        subDepartmentId: subDepartmentId ?? this.subDepartmentId,
-        firstDate: firstDate ?? this.firstDate,
-        secondDate: secondDate ?? this.secondDate,
-      );
+  // Create a Ration object from a map (retrieved from the database)
+  factory RationModel.fromMap(Map<String, dynamic> map) {
+    return RationModel(
+        rationId: map['rationId'],
+        rationName: map['rationName'],
+        rate: double.parse(map['rate']),
+        count: map['count'],
+        remark: map['remark'],
+        departmentId: map['departmentId'],
+        subDepartmentId: map['subDepartmentId'],
+        firstDate: map['firstDate'],
+        secondDate: map['secondDate']);
+  }
 }
