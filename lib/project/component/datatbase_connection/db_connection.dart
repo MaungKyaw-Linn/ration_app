@@ -1,4 +1,6 @@
+// ignore: depend_on_referenced_packages
 import 'package:sqflite/sqflite.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 
 class DatabaseHelper {
@@ -57,6 +59,9 @@ class DatabaseHelper {
       FOREIGN KEY (subDepartmentId) REFERENCES sub_department_table (subDepartmentId) ON DELETE CASCADE
     )
   ''');
+
+    // Enable foreign key constraints
+    await db.execute('PRAGMA foreign_keys = ON;');
   }
 
   ///data insert into tables
@@ -107,6 +112,8 @@ class DatabaseHelper {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+
+  //to close database
 
   close() async {
     var db = await this.database;
