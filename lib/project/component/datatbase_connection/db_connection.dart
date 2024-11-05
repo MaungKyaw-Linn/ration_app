@@ -107,4 +107,10 @@ class DatabaseHelper {
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+
+  close() async {
+    var db = await this.database;
+    var result = db.close();
+    return result;
+  }
 }
